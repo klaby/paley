@@ -1,7 +1,10 @@
 import React from 'react'
 
+import { IColorPreviewProps } from './types'
+
 import { Wrapper } from './styles'
 
-const ColorPreview: React.FC = () => <Wrapper />
-
-export default ColorPreview
+export const ColorPreview: React.FC<IColorPreviewProps> = ({
+  color,
+  onClick,
+}) => <Wrapper color={color} onClick={onClick} />

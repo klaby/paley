@@ -1,2 +1,3 @@
-export { default as ColorPreview } from './ColorPreview'
-export { default as Header } from './Header'
+export * from './ColorPreview'
+export * from './Header'
+export * from './Toggle'

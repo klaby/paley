@@ -1147,6 +1147,11 @@
   resolved "https://registry.yarnpkg.com/@minily/tools/-/tools-0.0.0.tgz#00b0933dbd3199679b2620b324af366c5277f59b"
   integrity sha512-eUx3/6pwYkODo1Fj9iG0m8we+ByuvvsOIL6gsXx5z5rWO4qJ+pT65u3U8HveHpke/KEsOlizFDBjJ9AMnKhcow==
 
+"@minily/tools@^0.1.0-alpha.2":
+  version "0.1.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@minily/tools/-/tools-0.1.0-alpha.2.tgz#866e4fcdd85f65a2c0a00fa1b4cbc767816b3ec6"
+  integrity sha512-I8aa94S5HaEokQxjbjdy5Xdx6QkUi/0cAlolw6pm4dBjCpHO/6ZNZj6ConYIX1WVv3AoGa0hR6dXGnJm/FbjDw==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"

@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@minily/components": "^0.1.0-alpha.1",
+    "@minily/tools": "^0.1.0-alpha.2",
     "crossenv": "^0.0.2-security",
     "electron": "^9.2.0",
     "eslint-config-airbnb": "^18.2.0",
