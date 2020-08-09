@@ -5,7 +5,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   devtool: 'source-map',
-  entry: path.join(process.cwd(), 'electron/main.ts'),
+  entry: path.join(process.cwd(), 'electron', 'main.ts'),
   target: 'electron-main',
   module: {
     rules: [
@@ -18,8 +18,11 @@ module.exports = {
       },
     ],
   },
+  node: {
+    __dirname: false,
+  },
   output: {
-    path: path.resolve(process.cwd(), './dist'),
+    path: path.resolve(process.cwd(), 'dist'),
     filename: '[name].js',
   },
 }

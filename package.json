@@ -3,18 +3,38 @@
   "version": "0.0.0",
   "description": "A simple color picker for Sway.",
   "main": "./dist/main.js",
+  "homepage": "./",
   "repository": "git@github.com:hiukky/paley.git",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",
     "url": "https://hiukky.com"
   },
+  "build": {
+    "appId": "com.hiukky.paley",
+    "productName": "Paley",
+    "copyright": "Copyright © 2020 Romullo",
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*"
+    ]
+  },
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist release",
     "dev": "concurrently \"yarn dev:react\" \"yarn dev:electron\"",
     "dev:electron": "NODE_ENV=development webpack --config webpack/electron.config.js --mode development && electron .",
-    "dev:react": "NODE_ENV=development webpack-dev-server --config webpack/react.config.js --mode development --host 0.0.0.0",
+    "dev:react": "NODE_ENV=development webpack-dev-server --config webpack/react.config.js --mode development",
+    "build": "yarn clean && concurrently \"yarn build:electron\" \"yarn build:react\"",
+    "build:electron": "NODE_ENV=production webpack --config webpack/electron.config.js --mode production",
+    "build:react": "NODE_ENV=production webpack --config webpack/react.config.js --mode production",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-build": "yarn build",
+    "electron-build": "electron-builder -l",
     "format": "prettier --write \"./src/**/*.{js,ts,tsx}\""
   },
   "devDependencies": {
@@ -48,13 +68,14 @@
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "electron": "^9.2.0",
+    "electron-builder": "^22.8.0"
   },
   "dependencies": {
     "@minily/components": "^0.1.0-alpha.1",
     "@minily/tools": "^0.1.0-alpha.2",
     "crossenv": "^0.0.2-security",
-    "electron": "^9.2.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-typescript": "^2.0.0",

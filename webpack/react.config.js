@@ -9,7 +9,6 @@ module.exports = {
   entry: path.resolve(process.cwd(), 'src', 'index.tsx'),
   target: 'electron-renderer',
   devtool: 'source-map',
-  watch: true,
   module: {
     rules: [
       {
@@ -42,6 +41,7 @@ module.exports = {
     historyApiFallback: true,
     compress: true,
     hot: true,
+    host: '0.0.0.0',
     port: 4000,
     publicPath: '/',
   },

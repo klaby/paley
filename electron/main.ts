@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
+import url from 'url'
 
 let mainWindow: Electron.BrowserWindow | null
 
@@ -22,12 +23,17 @@ function createWindow() {
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:4000')
-    mainWindow.webContents.openDevTools({ mode: 'undocked' })
   } else {
     mainWindow.loadURL(
-      `file://${path.resolve(process.cwd(), 'dist', 'index.html')}`,
+      url.format({
+        pathname: path.join(__dirname, 'renderer/index.html'),
+        protocol: 'file:',
+        slashes: true,
+      }),
     )
   }
+
+  mainWindow.webContents.openDevTools({ mode: 'undocked' })
 
   mainWindow.on('closed', () => {
     mainWindow = null
