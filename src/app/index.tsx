@@ -17,7 +17,7 @@ const App: React.FC = () => {
     exec(
       'grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:-',
       (error, stdout) => {
-        if (error) return
+        if (error) console.error(error)
 
         if (stdout) {
           setSelectedColor(stdout.split(' ')[7])

@@ -1,12 +1,14 @@
-const path = require('path')
+const { join, resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const rootDir = join(__dirname, '..')
 
 module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     mainFields: ['main', 'module', 'browser'],
   },
-  entry: path.resolve(process.cwd(), 'src', 'index.tsx'),
+  entry: resolve(rootDir, 'src', 'index.tsx'),
   target: 'electron-renderer',
   devtool: 'source-map',
   module: {
@@ -37,7 +39,7 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(process.cwd(), 'dist', 'renderer'),
+    contentBase: join(rootDir, 'dist', 'renderer'),
     historyApiFallback: true,
     compress: true,
     hot: true,
@@ -46,7 +48,7 @@ module.exports = {
     publicPath: '/',
   },
   output: {
-    path: path.resolve(process.cwd(), 'dist', 'renderer'),
+    path: resolve(rootDir, 'dist', 'renderer'),
     filename: 'js/[name].js',
     publicPath: './',
   },

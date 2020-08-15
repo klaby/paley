@@ -1,6 +1,9 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
 import url from 'url'
+import shellPath from 'shell-path'
+
+shellPath.sync()
 
 let mainWindow: Electron.BrowserWindow | null
 
@@ -40,5 +43,6 @@ function createWindow() {
   })
 }
 
+app.disableHardwareAcceleration()
 app.on('ready', createWindow)
 app.allowRendererProcessReuse = true

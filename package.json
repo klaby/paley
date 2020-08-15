@@ -15,15 +15,17 @@
     "productName": "Paley",
     "copyright": "Copyright © 2020 Romullo",
     "directories": {
-      "buildResources": "build",
+      "buildResources": "[build, scripts]",
       "output": "release"
     },
     "files": [
       "dist/**/*",
+      "release/**/*",
       "node_modules/**/*"
     ],
     "linux": {
-      "target": "snap"
+      "target": "snap",
+      "category": "Graphics"
     }
   },
   "license": "MIT",
@@ -37,7 +39,7 @@
     "build:react": "NODE_ENV=production webpack --config webpack/react.config.js --mode production",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-build": "yarn build",
-    "electron-build": "electron-builder -l",
+    "electron-build": "electron-builder --linux",
     "format": "prettier --write \"./src/**/*.{js,ts,tsx}\""
   },
   "devDependencies": {

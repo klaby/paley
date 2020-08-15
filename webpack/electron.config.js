@@ -1,11 +1,13 @@
-const path = require('path')
+const { join, resolve } = require('path')
+
+const rootDir = join(__dirname, '..')
 
 module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   devtool: 'source-map',
-  entry: path.join(process.cwd(), 'electron', 'main.ts'),
+  entry: join(rootDir, 'electron', 'main.ts'),
   target: 'electron-main',
   module: {
     rules: [
@@ -20,9 +22,10 @@ module.exports = {
   },
   node: {
     __dirname: false,
+    __filename: false,
   },
   output: {
-    path: path.resolve(process.cwd(), 'dist'),
+    path: resolve(rootDir, 'dist'),
     filename: '[name].js',
   },
 }
