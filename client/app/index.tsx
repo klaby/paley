@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { clipboard } from 'electron'
-import { exec } from 'child_process'
+import copy from 'copy-to-clipboard'
 
 import { ColorPreview, Header } from '../components'
 
@@ -14,26 +13,10 @@ const App: React.FC = () => {
    * colors based on the position.
    */
   const picker = (): void => {
-    exec(
-      'grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:-',
-      (error, stdout) => {
-        if (error) console.error(error)
-
-        if (stdout) {
-          setSelectedColor(stdout.split(' ')[7])
-        }
-      },
+    window.eel.picker()((color: string) =>
+      setSelectedColor(color.split(' ')[7]),
     )
   }
-
-  /**
-   * @function copy
-   *
-   * Copy selected color.
-   *
-   * @param {string} color
-   */
-  const copy = (color: string): void => clipboard.writeText(color)
 
   return (
     <>

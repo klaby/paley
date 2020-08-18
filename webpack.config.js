@@ -1,16 +1,11 @@
-const { join, resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const rootDir = join(__dirname, '..')
 
 module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     mainFields: ['main', 'module', 'browser'],
   },
-  entry: resolve(rootDir, 'src', 'index.tsx'),
-  target: 'electron-renderer',
-  devtool: 'source-map',
+  entry: './client/index.tsx',
   module: {
     rules: [
       {
@@ -19,6 +14,14 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -39,18 +42,19 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: join(rootDir, 'dist', 'renderer'),
+    contentBase: './dist',
     historyApiFallback: true,
     compress: true,
     hot: true,
     host: '0.0.0.0',
     port: 4000,
     publicPath: '/',
+    writeToDisk: true,
   },
-  output: {
-    path: resolve(rootDir, 'dist', 'renderer'),
-    filename: 'js/[name].js',
-    publicPath: './',
-  },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      filename: './index.html',
+    }),
+  ],
 }
