@@ -11,8 +11,9 @@
     "dev:react": "webpack-dev-server",
     "dev:eel": "python3 app.py --develop",
     "start": "python3 app.py --production",
+    "build": "yarn build:react && yarn build:eel",
     "build:react": "webpack --mode production",
-    "build:eel": "python3 -m eel app.py build --onefile --noconsole --name react-eel-boilerplate",
+    "build:eel": "python3 -m eel app.py dist --onefile --noconsole --name react-eel-boilerplate",
     "format": "prettier --write \"./**/*.{js,ts,tsx}\""
   },
   "dependencies": {
