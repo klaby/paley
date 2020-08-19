@@ -24,12 +24,14 @@ if __name__ == "__main__":
     if sys.argv[1] == "--develop":
         directory = "dist"
         page = {"port": 4000}
+        args=['./node_modules/.bin/electron', '.']
     else:
         directory = "dist"
         page = "index.html"
+        args=['electron', '.']
 
-    eel.init(directory, [".tsx", ".ts", ".jsx", ".js", ".html"])
+    eel.init(directory)
 
-    eel_kwargs = dict(host="localhost", port=8080, size=(300, 350))
+    eel_kwargs = dict(host="localhost", port=8080, cmdline_args=args)
 
-    eel.start(page, mode="chrome", **eel_kwargs)
+    eel.start(page, mode="electron", **eel_kwargs)

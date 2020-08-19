@@ -6,6 +6,9 @@ module.exports = {
     mainFields: ['main', 'module', 'browser'],
   },
   entry: './client/index.tsx',
+  output: {
+    filename: 'bundle.js',
+  },
   module: {
     rules: [
       {
