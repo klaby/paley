@@ -1,10 +1,11 @@
+#!/usr/bin/env python
+
 import eel
 import sys
 import random
 import subprocess
 
 sys.path.insert(1, "../../")
-
 
 @eel.expose
 def picker():
@@ -20,15 +21,17 @@ def picker():
     )
 
 
+
+
 if __name__ == "__main__":
-    if sys.argv[1] == "--develop":
+    if len(sys.argv) > 1 and sys.argv[1] == "--develop":
         directory = "dist"
         page = {"port": 4000}
         args=['./node_modules/.bin/electron', '.']
     else:
         directory = "dist"
         page = "index.html"
-        args=['electron', '.']
+        args=['app.asar']
 
     eel.init(directory)
 
