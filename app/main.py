@@ -25,15 +25,13 @@ def picker():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--develop":
-        directory = "dist"
         page = {"port": 4000}
         args=['./node_modules/.bin/electron', '.']
-    else:
-        directory = "dist"
-        page = "index.html"
-        args=['app.asar']
 
-    eel.init(directory)
+        eel.init('dist')
+    else:
+        page = "index.html"
+        args=['/usr/lib/paley/app.asar']
 
     eel_kwargs = dict(host="localhost", port=8080, cmdline_args=args)
 
