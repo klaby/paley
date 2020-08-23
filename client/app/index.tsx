@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Header, ColorPreview } from '../components'
+import { Header, ColorSelector, ColorPreview } from '../components'
 import { _Color } from '../helpers'
 
 const App: React.FC = () => {
@@ -21,11 +21,12 @@ const App: React.FC = () => {
   return (
     <>
       <Header onPicker={picker} />
-      <ColorPreview
+      <ColorSelector
         onGetRangeColor={color => setSelectedColor(color)}
         onGetPreviewColor={color => console.log(color)}
         color={selectedColor}
       />
+      <ColorPreview color={selectedColor} />
     </>
   )
 }

@@ -4,7 +4,11 @@ import { ThemeProvider as Theme } from 'styled-components'
 import 'remixicon/fonts/remixicon.css'
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const theme = {}
+  const theme = {
+    fonts: {
+      primary: "'Rubik', sans-serif",
+    },
+  }
 
   return <Theme theme={theme}>{children}</Theme>
 }
