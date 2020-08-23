@@ -4,8 +4,8 @@ import url from 'url'
 
 let mainWindow: Electron.BrowserWindow | null
 
-const width = 300
-const height = 350
+export const width = 350
+export const height = 450
 
 function createWindow() {
   mainWindow = new BrowserWindow({

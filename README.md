@@ -1,1 +1,1 @@
-# React Eel Boilerplate
+# Paley

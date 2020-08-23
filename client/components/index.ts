@@ -1,4 +1,3 @@
-export * from './Header'
-export * from './Toggle'
-export * from './ColorSelector'
-export * from './ColorPreview'
+export { default as Header } from './Header'
+export { default as Selector } from './Selector'
+export { default as Range } from './Range'

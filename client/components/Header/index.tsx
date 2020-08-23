@@ -1,15 +1,22 @@
 import React from 'react'
-import { Icon } from '@minily/components'
 
+import { Icon } from '@minily/components'
 import { IHeaderProps } from './types'
 
-import { Wrapper } from './styles'
-import { Toggle } from '../Toggle'
+import { Wrapper, Menu, Toggle } from './styles'
 
-export const Header: React.FC<IHeaderProps> = ({ onPicker }) => (
+const Header: React.FC<IHeaderProps> = ({ onPicker }) => (
   <Wrapper>
-    <Toggle>
-      <Icon name="sip" type="fill" onClick={onPicker} />
-    </Toggle>
+    <Menu.Options.Container>
+      <Menu.Options.Item>Solid</Menu.Options.Item>
+      <Menu.Options.Item>HSL</Menu.Options.Item>
+    </Menu.Options.Container>
+    <Menu.Buttons.Container>
+      <Toggle>
+        <Icon name="sip" type="fill" size="xs" onClick={onPicker} />
+      </Toggle>
+    </Menu.Buttons.Container>
   </Wrapper>
 )
+
+export default Header
