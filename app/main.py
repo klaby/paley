@@ -22,13 +22,11 @@ def picker():
 
 
 
-
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--develop":
+        eel.init("dist")
         page = {"port": 4000}
         args=['./node_modules/.bin/electron', '.']
-
-        eel.init('dist')
     else:
         page = "index.html"
         args=['/usr/lib/paley/app.asar']

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import copy from 'copy-to-clipboard'
 
-import { ColorPreview, Header } from '../components'
+import { Header, ColorPreview } from '../components'
+import { _Color } from '../helpers'
 
 const App: React.FC = () => {
-  const [selectedColor, setSelectedColor] = useState('#3867d6')
+  const [selectedColor, setSelectedColor] = useState('hsl(222,65%,52%)')
 
   /**
    * @function picker
@@ -13,15 +13,18 @@ const App: React.FC = () => {
    * colors based on the position.
    */
   const picker = (): void => {
-    window.eel.picker()((color: string) =>
-      setSelectedColor(color.split(' ')[7]),
-    )
+    window.eel.picker()((color: string) => {
+      setSelectedColor(_Color.tinycolor(color.split(' ')[7]).toHslString())
+    })
   }
 
   return (
     <>
       <Header onPicker={picker} />
-      <ColorPreview onClick={() => copy(selectedColor)} color={selectedColor} />
+      <ColorPreview
+        onGetColor={color => setSelectedColor(color)}
+        color={selectedColor}
+      />
     </>
   )
 }

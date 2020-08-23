@@ -15,6 +15,9 @@ function createWindow() {
     minHeight: height,
     maxWidth: width,
     maxHeight: height,
+    resizable: false,
+    center: true,
+    maximizable: false,
     frame: false,
     webPreferences: {
       nodeIntegration: true,
