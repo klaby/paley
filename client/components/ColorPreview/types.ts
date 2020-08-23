@@ -1,5 +1,6 @@
 export interface IColorPreviewProps
   extends React.PropsWithRef<JSX.IntrinsicElements['div']> {
-  onGetColor?: (color: string) => void
+  onGetRangeColor?: (color: string) => void
+  onGetPreviewColor?: (color: string) => void
   color: string
 }

@@ -10,7 +10,7 @@ const Selector = {
     background: transparent;
     border: none;
     outline: 0;
-    height: 20px;
+    height: 15px;
 
     ${Flex.container()};
     background: -webkit-linear-gradient(
@@ -28,13 +28,10 @@ const Selector = {
   `,
 
   ColorPreview: styled.canvas`
-    left: 70px;
-    height: 150px;
+    height: 120px;
+    width: 100%;
     transition: all 0.3s;
-    margin-bottom: 20px;
-    background: linear-gradient(180deg, transparent, black 98%),
-      linear-gradient(110deg, transparent, ${p => p.color} 80%),
-      linear-gradient(140deg, transparent, white);
+    margin-bottom: 15px;
 
     :hover {
       cursor: crosshair;

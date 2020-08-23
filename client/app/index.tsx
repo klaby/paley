@@ -22,7 +22,8 @@ const App: React.FC = () => {
     <>
       <Header onPicker={picker} />
       <ColorPreview
-        onGetColor={color => setSelectedColor(color)}
+        onGetRangeColor={color => setSelectedColor(color)}
+        onGetPreviewColor={color => console.log(color)}
         color={selectedColor}
       />
     </>
