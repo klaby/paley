@@ -30,6 +30,6 @@ package() {
   sudo mkdir -p "/usr/lib/$pkgname"
   sudo rsync -a "$srcdir/$pkgname-$_branch/release/$pkgname" "/usr/lib/$pkgname/$pkgname"
   sudo rsync -a "$srcdir/$pkgname-$_branch/out/linux-unpacked/resources/app.asar" "/usr/lib/$pkgname"
-  sudo bash -c "echo -e '#!/bin/n=bash \n exec /usr/lib/paley/paley' > /usr/bin/$pkgname"
+  sudo bash -c "echo -e '#!/bin/bash \n exec /usr/lib/paley/paley' > /usr/bin/$pkgname"
   sudo chmod 755 "/usr/lib/$pkgname/$pkgname"
 }
