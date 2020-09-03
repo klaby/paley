@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 const Color = {
   Preview: styled.canvas`
     background: orange;
-    height: 135px;
+    height: 160px;
     width: 100%;
     cursor: pointer;
     user-select: none;

@@ -3,4 +3,6 @@ export interface ISelectorProps
   onGetColor?: (color: string) => void
   onCopyColor?: (color: string) => void
   color: string
+  mode: string
+  scheme: string
 }

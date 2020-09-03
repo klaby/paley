@@ -7,20 +7,12 @@ import { ISelectorProps } from './types'
 import { _Color } from '../../helpers'
 
 const Selector: React.FC<ISelectorProps> = ({
-  color = 'red',
+  color,
+  mode,
   onGetColor = () => {},
   onCopyColor = () => {},
 }) => {
   const colorPreviewRef = useRef<HTMLCanvasElement>(null)
-
-  const [mode, setMode] = useState<'preview' | 'advanced'>('preview')
-
-  /**
-   * @function changeMode
-   *
-   * Switch from solid to advanced preview mode.
-   */
-  const changeMode = () => setMode(mode === 'preview' ? 'advanced' : 'preview')
 
   /**
    * @function createGradient
@@ -68,19 +60,6 @@ const Selector: React.FC<ISelectorProps> = ({
   }, [color, mode])
 
   /**
-   * @function getColor
-   *
-   * Get selected color.
-   *
-   * @param {MouseEvent<HTMLCanvasElement>} e
-   */
-  const copyColor = () => {
-    if (mode === 'preview') {
-      onCopyColor(color)
-    }
-  }
-
-  /**
    * @function getAdvancedColor
    *
    * @param {React.MouseEvent<HTMLCanvasElement>} e
@@ -94,7 +73,7 @@ const Selector: React.FC<ISelectorProps> = ({
       .tinycolor(`rgb(${imageData[0]},${imageData[1]},${imageData[2]})`)
       .toHslString()
 
-    colorPreviewRef.current.onmouseup = () => onGetColor(previewColor)
+    colorPreviewRef.current.onmouseup = () => onCopyColor(previewColor)
   }
 
   useEffect(() => {
@@ -105,11 +84,9 @@ const Selector: React.FC<ISelectorProps> = ({
     <Wrapper>
       <Color.Preview
         ref={colorPreviewRef}
-        onClick={copyColor}
         onMouseMove={getAdvancedColor}
-        onDoubleClick={changeMode}
       />
-      <Color.Name>{color}</Color.Name>
+      <Color.Name>{_Color.tinycolor(color).toHex()}</Color.Name>
     </Wrapper>
   )
 }

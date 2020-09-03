@@ -9,6 +9,10 @@ import { Wrapper, Container } from './styles'
 const App: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState('hsl(254,91%,62%)')
 
+  const [sheme, setScheme] = useState('hex')
+
+  const [mode, setMode] = useState('solid')
+
   /**
    * @function picker
    *
@@ -24,11 +28,13 @@ const App: React.FC = () => {
   return (
     <Wrapper>
       <Container.Header>
-        <Header onPicker={picker} />
+        <Header onPicker={picker} onGetSheme={setScheme} onGetMode={setMode} />
       </Container.Header>
       <Container.Main>
         <Selector
           color={selectedColor}
+          mode={mode}
+          scheme={sheme}
           onGetColor={setSelectedColor}
           onCopyColor={copy}
         />
