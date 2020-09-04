@@ -2,14 +2,26 @@ import React, { useState } from 'react'
 
 import { Header, List } from './styles'
 
-import { IDropDownProps } from './types'
+import { ISelectProps, TData } from './types'
 
-const DropDown: React.FC<IDropDownProps> = ({
+const Select: React.FC<ISelectProps> = ({
   data = [],
   onGetValue = () => {},
   defaultValue = '',
 }) => {
   const [enabled, setEnabled] = useState(false)
+
+  /**
+   * @function getData
+   *
+   * Get selected data.
+   *
+   * @param {TData} data
+   */
+  const getData = (data: TData) => {
+    onGetValue(data)
+    setEnabled(false)
+  }
 
   return (
     <>
@@ -20,10 +32,7 @@ const DropDown: React.FC<IDropDownProps> = ({
         {enabled && (
           <List.Container>
             {data?.map(({ label, value }) => (
-              <List.Item
-                key={value}
-                onClick={() => onGetValue({ label, value })}
-              >
+              <List.Item key={value} onClick={() => getData({ label, value })}>
                 {label}
               </List.Item>
             ))}
@@ -34,4 +43,4 @@ const DropDown: React.FC<IDropDownProps> = ({
   )
 }
 
-export default DropDown
+export default Select

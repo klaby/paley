@@ -5,19 +5,19 @@ import { IHeaderProps } from './types'
 
 import { PickerContext, TMode, TSchemeColor } from '../../store'
 
-import DropDown from '../DropDown'
+import Select from '../Select'
 
 import { Wrapper, Menu, Toggle } from './styles'
 
 const Header: React.FC<IHeaderProps> = () => {
-  const { actions } = useContext(PickerContext)
+  const { state, actions } = useContext(PickerContext)
 
   return (
     <Wrapper>
       <Menu.Options.Container>
         <Menu.Options.Item>
-          <DropDown
-            defaultValue="solid"
+          <Select
+            defaultValue={state.mode}
             data={[
               { label: 'Solid', value: 'solid' },
               { label: 'Advanced', value: 'advanced' },
@@ -26,8 +26,8 @@ const Header: React.FC<IHeaderProps> = () => {
           />
         </Menu.Options.Item>
         <Menu.Options.Item>
-          <DropDown
-            defaultValue="hex"
+          <Select
+            defaultValue={state.sheme}
             data={[
               { label: 'HEX', value: 'hex' },
               { label: 'RGB', value: 'rgb' },
