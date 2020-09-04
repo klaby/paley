@@ -27,11 +27,10 @@ const Header: React.FC<IHeaderProps> = () => {
         </Menu.Options.Item>
         <Menu.Options.Item>
           <Select
-            defaultValue={state.sheme}
+            defaultValue={state.scheme}
             data={[
               { label: 'HEX', value: 'hex' },
               { label: 'RGB', value: 'rgb' },
-              { label: 'RGBA', value: 'rgba' },
               { label: 'HSL', value: 'hsl' },
             ]}
             onGetValue={({ value }) =>

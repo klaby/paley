@@ -1,3 +1,5 @@
+import { TTypeColor } from '../helpers'
+
 export enum ActionsTypes {
   ON_PICKER_COLOR = 'ON_PICKER_COLOR',
   ON_CHANGE_MODE = 'ON_CHANGE_MODE',
@@ -16,15 +18,15 @@ export type TColors = {
   advanced: string
 }
 
-export type TMode = 'solid' | 'advanced'
+export type TSchemeColor = TTypeColor
 
-export type TSchemeColor = 'hex' | 'rgb' | 'rgba' | 'hsl'
+export type TMode = 'solid' | 'advanced'
 
 export type TPickerAction = TAction<ActionsTypes.ON_PICKER_COLOR, TColors>
 
 export type TChangeModeAction = TAction<ActionsTypes.ON_CHANGE_MODE, TMode>
 
-export type TChangeShemeColorAction = TAction<
+export type TChangeschemeColorAction = TAction<
   ActionsTypes.ON_CHANGE_SCHEME_COLOR,
   TSchemeColor
 >
@@ -42,14 +44,14 @@ export type TSetRangerColorAction = TAction<
 export type TActions =
   | TPickerAction
   | TChangeModeAction
-  | TChangeShemeColorAction
+  | TChangeschemeColorAction
   | TSetSelectorColorAction
   | TSetRangerColorAction
 
 export interface IState {
   colors: TColors
   mode: TMode
-  sheme: TSchemeColor
+  scheme: TSchemeColor
 }
 
 export interface IActions {

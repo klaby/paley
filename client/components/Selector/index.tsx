@@ -19,8 +19,6 @@ const Selector: React.FC<ISelectorProps> = () => {
 
   const colorPreviewRef = useRef<HTMLCanvasElement>(null)
 
-  console.log(state)
-
   /**
    * @function createGradient
    *

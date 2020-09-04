@@ -1,5 +1,7 @@
 import { tinycolor } from '@ctrl/tinycolor'
 
+import { TTypeColor } from './types'
+
 /**
  * @function getHsl
  *
@@ -22,4 +24,25 @@ const makeHslScheme = (hop: number = 1): string[] =>
     hop ? k * hop : k,
   ).map(v => getHsl(v))
 
-export default { getHsl, makeHslScheme, tinycolor }
+/**
+ * @function getColorPerType
+ *
+ * Gets the color in the specified format.
+ *
+ * @param {string} color
+ * @param {TTypeColor} type
+ */
+const getColorPerType = (color: string, type: TTypeColor): string => {
+  switch (type) {
+    case 'hex':
+      return tinycolor(color).toHexString()
+    case 'hsl':
+      return tinycolor(color).toHslString()
+    case 'rgb':
+      return tinycolor(color).toRgbString()
+    default:
+      return color
+  }
+}
+
+export default { getHsl, makeHslScheme, getColorPerType, tinycolor }

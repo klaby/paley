@@ -1,5 +1,3 @@
-import { useReducer } from 'react'
-
 import { IState, ActionsTypes, TActions } from './types'
 
 const INITIAL_STATE: IState = {
@@ -8,7 +6,7 @@ const INITIAL_STATE: IState = {
     solid: '',
   },
   mode: 'solid',
-  sheme: 'hex',
+  scheme: 'hex',
 }
 
 const reducer = (state = INITIAL_STATE, action: TActions) => {
@@ -20,7 +18,7 @@ const reducer = (state = INITIAL_STATE, action: TActions) => {
       return { ...state, mode: action.payload }
 
     case ActionsTypes.ON_CHANGE_SCHEME_COLOR:
-      return { ...state, sheme: action.payload }
+      return { ...state, scheme: action.payload }
 
     case ActionsTypes.ON_SET_SELECTOR_COLOR:
       return {

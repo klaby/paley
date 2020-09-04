@@ -1,13 +1,22 @@
-import React, { createContext, useReducer } from 'react'
+import React, {
+  createContext,
+  useReducer,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 
 import { IPickerContext, ActionsTypes, TMode, TSchemeColor } from './types'
 
 import { reducer, INITIAL_STATE } from './reducer'
+import { _Color } from '../helpers'
 
 const PickerContext = createContext({} as IPickerContext)
 
 const PickerProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE)
+
+  const [schemeUpdated, setSchemeUpdated] = useState(false)
 
   /**
    * @function picker
@@ -15,7 +24,7 @@ const PickerProvider: React.FC = ({ children }) => {
    * This function performs grim by selecting any part of the screen and choosing
    * colors based on the position.
    */
-  const picker = () => {
+  const picker = (): void => {
     window.eel.picker()((color: string) => {
       const hexColor = color.split(' ')[7]
 
@@ -28,6 +37,40 @@ const PickerProvider: React.FC = ({ children }) => {
       })
     })
   }
+
+  /**
+   * @function setSelectorColor
+   *
+   * Set the selected color.
+   *
+   * @param {string} color
+   */
+  const setSeletorColor = useCallback(
+    (color: string) => {
+      dispatch({
+        type: ActionsTypes.ON_SET_SELECTOR_COLOR,
+        payload: _Color.getColorPerType(color, state.scheme),
+      })
+    },
+    [state.scheme],
+  )
+
+  /**
+   * @function setRangerColor
+   *
+   * Set the ranger color.
+   *
+   * @param {string} color
+   */
+  const setRangerColor = useCallback(
+    (color: string) => {
+      dispatch({
+        type: ActionsTypes.ON_SET_RANGER_COLOR,
+        payload: _Color.getColorPerType(color, state.scheme),
+      })
+    },
+    [state.scheme],
+  )
 
   /**
    * @function changeMode
@@ -55,35 +98,28 @@ const PickerProvider: React.FC = ({ children }) => {
       type: ActionsTypes.ON_CHANGE_SCHEME_COLOR,
       payload: scheme,
     })
+
+    setSchemeUpdated(true)
   }
 
   /**
-   * @function setSelectorColor
-   *
-   * Set the selected color.
-   *
-   * @param {string} color
+   * @function applyShemeColor
    */
-  const setSeletorColor = (color: string) => {
-    dispatch({
-      type: ActionsTypes.ON_SET_SELECTOR_COLOR,
-      payload: color,
-    })
-  }
+  const applyShemeColor = useCallback(() => {
+    if (schemeUpdated) {
+      setSeletorColor(
+        _Color.getColorPerType(state.colors.advanced, state.scheme),
+      )
 
-  /**
-   * @function setRangerColor
-   *
-   * Set the ranger color.
-   *
-   * @param {string} color
-   */
-  const setRangerColor = (color: string) => {
-    dispatch({
-      type: ActionsTypes.ON_SET_RANGER_COLOR,
-      payload: color,
-    })
-  }
+      setRangerColor(_Color.getColorPerType(state.colors.solid, state.scheme))
+
+      setSchemeUpdated(false)
+    }
+  }, [schemeUpdated, state.colors, state.scheme])
+
+  useEffect(() => {
+    applyShemeColor()
+  }, [applyShemeColor])
 
   return (
     <PickerContext.Provider
