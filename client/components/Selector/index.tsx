@@ -1,18 +1,25 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  useContext,
+} from 'react'
 
 import { Wrapper, Color } from './styles'
+
+import { PickerContext } from '../../store'
 
 import { ISelectorProps } from './types'
 
 import { _Color } from '../../helpers'
 
-const Selector: React.FC<ISelectorProps> = ({
-  color,
-  mode,
-  onGetColor = () => {},
-  onCopyColor = () => {},
-}) => {
+const Selector: React.FC<ISelectorProps> = () => {
+  const { state, actions } = useContext(PickerContext)
+
   const colorPreviewRef = useRef<HTMLCanvasElement>(null)
+
+  console.log(state)
 
   /**
    * @function createGradient
@@ -50,14 +57,14 @@ const Selector: React.FC<ISelectorProps> = ({
   const initColorPreview = useCallback(() => {
     const { width, height } = colorPreviewRef.current
 
-    if (mode === 'advanced') {
-      createGradient(width, height, color)
+    if (state.mode === 'advanced') {
+      createGradient(width, height, state.colors.solid)
       createGradient(width, 0, ['rgba(255,255,255,1)', 'rgba(255,255,255,0)'])
       createGradient(0, height, ['rgba(0,0,0,0)', 'rgba(0,0,0,1)'])
     } else {
-      createGradient(width, height, color)
+      createGradient(width, height, state.colors.solid)
     }
-  }, [color, mode])
+  }, [state.colors, state.mode])
 
   /**
    * @function getAdvancedColor
@@ -73,7 +80,8 @@ const Selector: React.FC<ISelectorProps> = ({
       .tinycolor(`rgb(${imageData[0]},${imageData[1]},${imageData[2]})`)
       .toHslString()
 
-    colorPreviewRef.current.onmouseup = () => onCopyColor(previewColor)
+    colorPreviewRef.current.onmouseup = () =>
+      actions.setSeletorColor(previewColor)
   }
 
   useEffect(() => {
@@ -82,11 +90,8 @@ const Selector: React.FC<ISelectorProps> = ({
 
   return (
     <Wrapper>
-      <Color.Preview
-        ref={colorPreviewRef}
-        onMouseMove={getAdvancedColor}
-      />
-      <Color.Name>{_Color.tinycolor(color).toHex()}</Color.Name>
+      <Color.Preview ref={colorPreviewRef} onMouseMove={getAdvancedColor} />
+      <Color.Name>{state.colors[state.mode]}</Color.Name>
     </Wrapper>
   )
 }

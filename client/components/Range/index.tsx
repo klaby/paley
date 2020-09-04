@@ -1,12 +1,16 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 
 import { IRangeProps } from './types'
 
 import { Wrapper, Selector } from './styles'
 
+import { PickerContext } from '../../store'
+
 import { _Color } from '../../helpers'
 
-const Range: React.FC<IRangeProps> = ({ color, onGetColor = () => {} }) => {
+const Range: React.FC<IRangeProps> = () => {
+  const { state, actions } = useContext(PickerContext)
+
   const rangeRef = useRef<HTMLInputElement>(null)
 
   /**
@@ -19,7 +23,8 @@ const Range: React.FC<IRangeProps> = ({ color, onGetColor = () => {} }) => {
   const getRangeColor = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const rangeColor = _Color.getHsl(Number(e.target.value))
 
-    rangeRef.current.onmouseup = () => onGetColor(rangeColor)
+    rangeRef.current.onmouseup = () =>
+      actions.setRangerColor(_Color.tinycolor(rangeColor).toHexString())
   }
 
   return (
@@ -30,7 +35,7 @@ const Range: React.FC<IRangeProps> = ({ color, onGetColor = () => {} }) => {
           ref={rangeRef}
           min={0}
           max={360}
-          value={_Color.tinycolor(color).toHsl().h}
+          value={_Color.tinycolor(state.colors.solid).toHsl().h}
           onChange={getRangeColor}
         />
       </Selector.Container>

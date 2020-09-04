@@ -35,6 +35,7 @@
     "react/prop-types": 0,
     "react/jsx-curly-newline": 0,
     "object-curly-newline": 0,
+    "no-shadow": 0,
     "react/jsx-filename-extension": [
       "error",
       {
