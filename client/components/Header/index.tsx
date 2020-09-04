@@ -41,6 +41,9 @@ const Header: React.FC<IHeaderProps> = () => {
       </Menu.Options.Container>
       <Menu.Buttons.Container>
         <Toggle>
+          <Icon name="file-copy" type="fill" size="xs" onClick={actions.copy} />
+        </Toggle>
+        <Toggle>
           <Icon name="sip" type="fill" size="xs" onClick={actions.picker} />
         </Toggle>
       </Menu.Buttons.Container>

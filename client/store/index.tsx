@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react'
+import clipboard from 'copy-to-clipboard'
 
 import { IPickerContext, ActionsTypes, TMode, TSchemeColor } from './types'
 
@@ -37,6 +38,17 @@ const PickerProvider: React.FC = ({ children }) => {
       })
     })
   }
+
+  /**
+   * @function copy
+   *
+   * Copy selected color to clipboard.
+   */
+  const copy = useCallback(() => {
+    clipboard(
+      state.mode === 'advanced' ? state.colors.advanced : state.colors.solid,
+    )
+  }, [state.mode, state.colors])
 
   /**
    * @function setSelectorColor
@@ -126,6 +138,7 @@ const PickerProvider: React.FC = ({ children }) => {
       value={{
         actions: {
           picker,
+          copy,
           changeMode,
           changeSchemeColor,
           setSeletorColor,

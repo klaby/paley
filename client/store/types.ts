@@ -56,6 +56,7 @@ export interface IState {
 
 export interface IActions {
   picker(): void
+  copy(): void
   setSeletorColor(color: string): void
   setRangerColor(color: string): void
   changeMode(mode: TMode): void
