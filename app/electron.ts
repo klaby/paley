@@ -18,11 +18,16 @@ function createWindow() {
     resizable: false,
     center: true,
     maximizable: false,
-    frame: false,
+    frame: true,
+    fullscreen: false,
+    fullscreenable: false,
     webPreferences: {
       nodeIntegration: true,
+      disableHtmlFullscreenWindowResize: true,
     },
   })
+
+  mainWindow.setMenu(null)
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:4000')
