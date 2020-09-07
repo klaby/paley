@@ -19,7 +19,7 @@ const App: React.FC = () => {
               onChange: ({ value }) => actions.changeMode(value as TMode),
               options: [
                 { label: 'Solid', value: 'solid' },
-                { label: 'Advanced', value: 'advanced' },
+                { label: 'Custom', value: 'custom' },
               ],
             },
             {

@@ -11,6 +11,7 @@ import { execSync } from 'child_process'
 import { IPickerContext, ActionsTypes, TMode, TSchemeColor } from './types'
 
 import { reducer, INITIAL_STATE } from './reducer'
+
 import { _Color } from '../helpers'
 
 const PickerContext = createContext({} as IPickerContext)
@@ -27,14 +28,15 @@ const PickerProvider: React.FC = ({ children }) => {
    * colors based on the position.
    */
   const picker = (): void => {
-    const color = execSync('grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:-',
+    const color = execSync(
+      'grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:-',
       { encoding: 'utf8' },
     ).split(' ')[7]
 
     dispatch({
       type: ActionsTypes.ON_PICKER_COLOR,
       payload: {
-        advanced: color,
+        custom: color,
         solid: color,
       },
     })
@@ -47,7 +49,7 @@ const PickerProvider: React.FC = ({ children }) => {
    */
   const copy = useCallback(() => {
     clipboard.writeText(
-      state.mode === 'advanced' ? state.colors.advanced : state.colors.solid,
+      state.mode === 'custom' ? state.colors.custom : state.colors.solid,
     )
   }, [state.mode, state.colors])
 
@@ -120,9 +122,7 @@ const PickerProvider: React.FC = ({ children }) => {
    */
   const applyShemeColor = useCallback(() => {
     if (schemeUpdated) {
-      setSeletorColor(
-        _Color.getColorPerType(state.colors.advanced, state.scheme),
-      )
+      setSeletorColor(_Color.getColorPerType(state.colors.custom, state.scheme))
 
       setRangerColor(_Color.getColorPerType(state.colors.solid, state.scheme))
 

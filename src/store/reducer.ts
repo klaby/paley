@@ -2,8 +2,8 @@ import { IState, ActionsTypes, TActions } from './types'
 
 const INITIAL_STATE: IState = {
   colors: {
-    advanced: '',
-    solid: '',
+    custom: '#6930c3',
+    solid: '#6930c3',
   },
   mode: 'solid',
   scheme: 'hex',
@@ -23,13 +23,13 @@ const reducer = (state = INITIAL_STATE, action: TActions) => {
     case ActionsTypes.ON_SET_SELECTOR_COLOR:
       return {
         ...state,
-        colors: { ...state.colors, advanced: action.payload },
+        colors: { ...state.colors, custom: action.payload },
       }
 
     case ActionsTypes.ON_SET_RANGER_COLOR:
       return {
         ...state,
-        colors: { advanced: action.payload, solid: action.payload },
+        colors: { custom: action.payload, solid: action.payload },
       }
 
     default:

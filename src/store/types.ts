@@ -15,12 +15,12 @@ export type TAction<T, P> = {
 
 export type TColors = {
   solid: string
-  advanced: string
+  custom: string
 }
 
 export type TSchemeColor = TTypeColor
 
-export type TMode = 'solid' | 'advanced'
+export type TMode = 'solid' | 'custom'
 
 export type TPickerAction = TAction<ActionsTypes.ON_PICKER_COLOR, TColors>
 

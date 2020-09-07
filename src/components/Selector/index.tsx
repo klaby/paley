@@ -8,7 +8,7 @@ import { _Color } from '../../helpers'
 
 const Selector: React.FC<ISelectorProps> = ({
   mode = 'solid',
-  colors = { solid: '', advanced: '' },
+  colors = { solid: '', custom: '' },
   onGetColor = () => {},
 }) => {
   const colorPreviewRef = useRef<HTMLCanvasElement>(null)
@@ -49,7 +49,7 @@ const Selector: React.FC<ISelectorProps> = ({
   const initColorPreview = useCallback(() => {
     const { width, height } = colorPreviewRef.current as HTMLCanvasElement
 
-    if (mode === 'advanced') {
+    if (mode === 'custom') {
       createGradient(width, height, colors.solid)
       createGradient(width, 0, ['rgba(255,255,255,1)', 'rgba(255,255,255,0)'])
       createGradient(0, height, ['rgba(0,0,0,0)', 'rgba(0,0,0,1)'])
@@ -59,11 +59,11 @@ const Selector: React.FC<ISelectorProps> = ({
   }, [colors, mode])
 
   /**
-   * @function getAdvancedColor
+   * @function getCustomColor
    *
    * @param {React.MouseEvent<HTMLCanvasElement>} e
    */
-  const getAdvancedColor = (e: React.MouseEvent<HTMLCanvasElement>): void => {
+  const getCustomColor = (e: React.MouseEvent<HTMLCanvasElement>): void => {
     const ctx = colorPreviewRef.current?.getContext('2d')
 
     const imageData = ctx?.getImageData(e.clientX, e.clientY, 1, 1).data
@@ -83,7 +83,7 @@ const Selector: React.FC<ISelectorProps> = ({
 
   return (
     <Wrapper>
-      <Color.Preview ref={colorPreviewRef} onMouseMove={getAdvancedColor} />
+      <Color.Preview ref={colorPreviewRef} onMouseMove={getCustomColor} />
       <Color.Name>{colors[mode]}</Color.Name>
     </Wrapper>
   )
