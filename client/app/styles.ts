@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: fixed;
-  height: 420px;
-  width: 320px;
+  min-height: 420px;
+  min-width: 320px;
   display: grid;
   grid-template-rows: 50px 350px;
 `

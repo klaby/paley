@@ -15,7 +15,7 @@ function createWindow() {
     minHeight: height,
     maxWidth: width,
     maxHeight: height,
-    resizable: false,
+    alwaysOnTop: true,
     center: true,
     maximizable: false,
     frame: true,
