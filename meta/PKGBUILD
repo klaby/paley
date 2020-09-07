@@ -3,7 +3,7 @@
 _branch='develop'
 
 pkgname=paley
-pkgver=0.0.0
+pkgver=0.1.0-alpha
 pkgrel=1
 epoch=0
 pkgdesc="A simple color picker for Wayland."

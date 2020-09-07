@@ -1,6 +1,6 @@
 {
   "name": "paley",
-  "version": "0.0.0",
+  "version": "0.1.0-alpha",
   "description": "A simple color picker for Wayland.",
   "main": "./dist/main.js",
   "homepage": "./",
