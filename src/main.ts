@@ -2,10 +2,10 @@ import { app, BrowserWindow } from 'electron'
 import path from 'path'
 import url from 'url'
 
-let mainWindow: Electron.BrowserWindow | null
+let mainWindow: BrowserWindow | null
 
-const width = 300
-const height = 350
+export const width = 320
+export const height = 420
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -15,25 +15,32 @@ function createWindow() {
     minHeight: height,
     maxWidth: width,
     maxHeight: height,
-    frame: false,
+    alwaysOnTop: true,
+    center: true,
+    maximizable: false,
+    frame: true,
+    fullscreen: false,
+    fullscreenable: false,
     webPreferences: {
       nodeIntegration: true,
+      disableHtmlFullscreenWindowResize: true,
     },
   })
 
+  mainWindow.setMenu(null)
+
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:4000')
+    mainWindow.webContents.openDevTools({ mode: 'undocked' })
   } else {
     mainWindow.loadURL(
       url.format({
-        pathname: path.join(__dirname, 'renderer/index.html'),
+        pathname: path.join(__dirname, 'renderer', 'index.html'),
         protocol: 'file:',
         slashes: true,
       }),
     )
   }
-
-  mainWindow.webContents.openDevTools({ mode: 'undocked' })
 
   mainWindow.on('closed', () => {
     mainWindow = null

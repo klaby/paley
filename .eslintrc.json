@@ -2,15 +2,9 @@
   "env": {
     "browser": true,
     "es2020": true,
-    "node": true,
-    "jest": true
+    "node": true
   },
-  "extends": [
-    "airbnb",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
-  ],
+  "extends": ["plugin:react/recommended", "airbnb"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -19,14 +13,32 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "rules": {
     "semi": 0,
+    "camelcase": 0,
     "arrow-parens": 0,
-    "react/prop-types": 0,
-    "import/prefer-default-export": 0,
-    "@typescript-eslint/no-var-requires": 0,
+    "import/prefer-default-export": "off",
+    "implicit-arrow-linebreak": 0,
+    "function-paren-newline": 0,
     "import/no-extraneous-dependencies": 0,
+    "global-require": 0,
+    "no-unused-vars": 0,
+    "no-confusing-arrow": 0,
+    "react/prop-types": 0,
+    "react/jsx-curly-newline": 0,
+    "object-curly-newline": 0,
+    "no-shadow": 0,
+    "no-use-before-define": 0,
+    "no-undef": 0,
+    "react/no-array-index-key": 0,
     "react/jsx-filename-extension": [
       "error",
       {
@@ -43,10 +55,5 @@
         "tsx": "never"
       }
     ]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
   }
 }

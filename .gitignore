@@ -1,3 +1,9 @@
-node_modules
-dist
-release
+out/
+dist/
+build/
+release/
+node_modules/
+env/
+.vscode/
+*.spec
+__pycache__
