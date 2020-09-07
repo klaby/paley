@@ -1,3 +1,4 @@
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -5,10 +6,9 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     mainFields: ['main', 'module', 'browser'],
   },
-  entry: './client/index.tsx',
-  output: {
-    filename: 'bundle.js',
-  },
+  entry: path.resolve(process.cwd(), 'src', 'index.tsx'),
+  target: 'electron-renderer',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -17,14 +17,6 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-          },
-        ],
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -45,19 +37,21 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: path.join(process.cwd(), 'dist', 'renderer'),
     historyApiFallback: true,
     compress: true,
     hot: true,
     host: '0.0.0.0',
     port: 4000,
     publicPath: '/',
-    writeToDisk: true,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      filename: './index.html',
-    }),
-  ],
+  output: {
+    path: path.resolve(process.cwd(), 'dist', 'renderer'),
+    filename: 'js/[name].js',
+    publicPath: './',
+  },
+  plugins: [new HtmlWebpackPlugin({
+    template: './index.html',
+    filename: './index.html',
+  })],
 }

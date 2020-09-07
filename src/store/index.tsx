@@ -5,7 +5,8 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import clipboard from 'copy-to-clipboard'
+import { clipboard } from 'electron'
+import { execSync } from 'child_process'
 
 import { IPickerContext, ActionsTypes, TMode, TSchemeColor } from './types'
 
@@ -26,16 +27,16 @@ const PickerProvider: React.FC = ({ children }) => {
    * colors based on the position.
    */
   const picker = (): void => {
-    window.eel.picker()((color: string) => {
-      const hexColor = color.split(' ')[7]
+    const color = execSync('grim -g "$(slurp -p)" -t ppm - | convert - -format "%[pixel:p{0,0}]" txt:-',
+      { encoding: 'utf8' },
+    ).split(' ')[7]
 
-      dispatch({
-        type: ActionsTypes.ON_PICKER_COLOR,
-        payload: {
-          advanced: hexColor,
-          solid: hexColor,
-        },
-      })
+    dispatch({
+      type: ActionsTypes.ON_PICKER_COLOR,
+      payload: {
+        advanced: color,
+        solid: color,
+      },
     })
   }
 
@@ -45,7 +46,7 @@ const PickerProvider: React.FC = ({ children }) => {
    * Copy selected color to clipboard.
    */
   const copy = useCallback(() => {
-    clipboard(
+    clipboard.writeText(
       state.mode === 'advanced' ? state.colors.advanced : state.colors.solid,
     )
   }, [state.mode, state.colors])
