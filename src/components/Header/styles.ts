@@ -23,6 +23,7 @@ const Menu = {
       font-weight: 400;
       font-size: 0.77rem;
       font-weight: 400;
+      width: 50px;
       color: rgba(93, 100, 108, 0.79);
 
       :first-child {
@@ -42,8 +43,11 @@ const Toggle = styled.div`
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  cursor: pointer;
   ${Flex.container('flex-end', 'center')};
+
+  i {
+    cursor: pointer;
+  }
 `
 
 export { Wrapper, Menu, Toggle }
