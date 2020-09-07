@@ -26,7 +26,7 @@ const Select: React.FC<ISelectProps> = ({
   return (
     <>
       <Header onClick={() => setEnabled(!enabled)}>
-        {data.find(({ value }) => value === defaultValue).label || 'Select'}
+        {data.find(({ value }) => value === defaultValue)?.label || 'Select'}
       </Header>
       <List.Wrapper>
         {enabled && (
