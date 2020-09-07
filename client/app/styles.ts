@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: fixed;
+  height: 100%;
+  width: 100%;
   min-height: 420px;
   min-width: 320px;
   display: grid;
