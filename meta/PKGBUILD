@@ -12,7 +12,7 @@ url="https://github.com/hiukky/paley"
 license=('MIT')
 source=("https://github.com/hiukky/paley/archive/$_branch.zip")
 validpgpkeys=()
-depends=('grim' 'slurp')
+depends=('grim' 'slurp' 'electron')
 makedepends=('git' 'yarn' 'python')
 md5sums=('SKIP')
 
