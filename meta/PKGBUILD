@@ -36,7 +36,8 @@ package() {
 
   install -Dm644 "out/linux-unpacked/resources/app.asar" "$pkgdir/usr/lib/$pkgname/app.asar"
   install -Dm644 "release/$pkgname" "$pkgdir/usr/lib/$pkgname/$pkgname"
-  install -Dm644  "$srcdir/$pkgname-$_branch/assets/paley.png" "$pkgdir/usr/share/$pkgname/$pkgname.png"
+  install -Dm644  "$srcdir/$pkgname-$_branch/resources/$pkgname.png" "$pkgdir/usr/share/$pkgname/$pkgname.png"
+  install -Dm644  "$srcdir/$pkgname-$_branch/meta/$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname/$pkgname.desktop"
   install -dm755 "$pkgdir/usr/bin/"
 
   bash -c "echo -e '#!/bin/bash\n exec /usr/lib/$pkgname/$pkgname' > $pkgdir/usr/bin/$pkgname"

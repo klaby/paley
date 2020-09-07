@@ -1,0 +1,9 @@
+[Desktop Entry]
+
+Type=Application
+Version=0.0.0
+Name=Paley
+Comment=A simple color picker for Wayland.
+Path=/usr/lib/Paley
+Exec=paley
+Icon=/usr/share/paley/paley.png
