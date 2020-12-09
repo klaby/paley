@@ -1,0 +1,28 @@
+name: build
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    env:
+      workdir: ./packages/themes
+
+    steps:
+      - name: Project -> Checkout
+        uses: actions/checkout@v2
+
+      - name: Project -> Set up Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+
+      - name: Project -> Install Dependencies
+        run: yarn install
+
+      - name: Project -> Test
+        run: yarn test
+
+      - name: Project -> Build
+        run: yarn build
