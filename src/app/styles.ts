@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 
+import { HEIGHT, WIDTH } from '../shared/constants'
+
 const Wrapper = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
-  min-height: 420px;
-  min-width: 320px;
+  min-height: ${HEIGHT}px;
+  min-width: ${WIDTH}px;
   display: grid;
   grid-template-rows: 50px 350px;
 `

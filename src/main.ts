@@ -2,19 +2,18 @@ import { app, BrowserWindow } from 'electron'
 import path from 'path'
 import url from 'url'
 
-let mainWindow: BrowserWindow | null
+import { WIDTH, HEIGHT } from './shared/constants'
 
-export const width = 320
-export const height = 420
+let mainWindow: BrowserWindow | null
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width,
-    height,
-    minWidth: width,
-    minHeight: height,
-    maxWidth: width,
-    maxHeight: height,
+    width: WIDTH,
+    height: HEIGHT,
+    minWidth: WIDTH,
+    minHeight: HEIGHT,
+    maxWidth: WIDTH,
+    maxHeight: HEIGHT,
     alwaysOnTop: true,
     center: true,
     maximizable: false,
